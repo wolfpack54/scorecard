@@ -158,6 +158,11 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
     }
 
     case 'RESET_GAME': {
+      const confirmed = window.confirm('Are you sure you want to reset the game? All players and scores will be cleared.');
+      if (!confirmed) {
+        return state;
+      }
+      
       return {
         ...INITIAL_STATE,
         lastUpdated: now,
